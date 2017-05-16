@@ -3,6 +3,11 @@
 SITES="clusters"
 PREFIX="core"
 
+if [ "`hostname -f`" != "deb8.ncbr.muni.cz" ]; then
+    echo "unsupported build machine!"
+    exit 1
+fi
+
 # names ------------------------------
 NAME="abs-rsync"
 VERS="3.1.2"
