@@ -42,7 +42,7 @@ cat > $SOFTBLDS/$NAME:$VERS:$ARCH:$MODE.bld << EOF
 <build name="$NAME" ver="$VERS" arch="$ARCH" mode="$MODE" verindx="$VERIDX">
     <setup>
         <variable name="AMS_PACKAGE_DIR" value="$PREFIX/$NAME/$VERS/$ARCH/$MODE" operation="set" priority="modaction"/>
-        <variable name="PATH" value="\$SOFTREPO/$PREFIX/$NAME/$VERS/$ARCH/$MODE/bin" operation="prepend"/>
+        <variable name="ABS_RSYNC" value="\$SOFTREPO/$PREFIX/$NAME/$VERS/$ARCH/$MODE/bin/rsync" operation="set"/>
     </setup>
 </build>
 EOF
