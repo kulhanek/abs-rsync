@@ -240,7 +240,11 @@ static struct idlist *recv_add_id(struct idlist **idlist_ptr, struct idlist *idm
 	} else
 		id2 = id;
 
+/* kulhanek
 	flag = idlist_ptr == &gidlist && !am_root && !is_in_group(id2) ? FLAG_SKIP_GROUP : 0;
+    do not test group presence in groups of user because it does not work on FS with nfs4:krb5 and metanfs4 mapper
+*/
+    flag = 0;
 	node = add_to_list(idlist_ptr, id, noiu, id2, flag);
 
 	if (DEBUG_GTE(OWN, 2)) {
