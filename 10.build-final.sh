@@ -3,10 +3,12 @@
 SITES="clusters"
 PREFIX="core"
 
-if [ "`hostname -f`" != "deb8.ncbr.muni.cz" ]; then
+if [[ ! ( ( "`hostname -f`" == "deb8.ncbr.muni.cz" ) || ( "`hostname -f`" == *"salomon"* ) )  ]]; then
     echo "unsupported build machine!"
     exit 1
 fi
+
+set -o pipefail
 
 # names ------------------------------
 NAME="abs-rsync"
@@ -46,6 +48,7 @@ cat > $SOFTBLDS/$NAME:$VERS:$ARCH:$MODE.bld << EOF
     </setup>
 </build>
 EOF
+if [ $? -ne 0 ]; then exit 1; fi
 
 ams-map-manip addbuilds $SITES $NAME:$VERS:$ARCH:$MODE
 if [ $? -ne 0 ]; then exit 1; fi
